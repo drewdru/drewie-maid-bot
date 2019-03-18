@@ -6,6 +6,8 @@ import (
 	"log"
 	"os"
 
+	messageManager "drewie-maid-bot/message-manager"
+
 	tgbotApi "github.com/Syfaro/telegram-bot-api"
 	"github.com/gin-gonic/gin"
 	_ "github.com/heroku/x/hmetrics/onload"
@@ -54,14 +56,8 @@ func webhookHandler(c *gin.Context) {
 		update.Message.From,
 		update.Message.Text)
 
-	// MesssageManager(update, bot)
-
-	// to monitor changes run: heroku logs --tail
-	// update.Message.From.LanguageCode
-
-	msg := tgbotApi.NewMessage(update.Message.Chat.ID, update.Message.Text)
-	msg.ReplyToMessageID = update.Message.MessageID
-	bot.Send(msg)
+	manager := messageManager.MessageManager{Update: &update, Bot: bot}
+	manager.Process()
 }
 
 func main() {
