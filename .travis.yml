@@ -1,4 +1,4 @@
 language: go
 cache: packages
 go_packages:
-  - .
+  - github.com/drewdru/drewie-maid-bot/message-manager
