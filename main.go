@@ -6,13 +6,13 @@ import (
 	"log"
 	"os"
 
-	tgbotapi "github.com/Syfaro/telegram-bot-api"
+	tgbotApi "github.com/Syfaro/telegram-bot-api"
 	"github.com/gin-gonic/gin"
 	_ "github.com/heroku/x/hmetrics/onload"
 )
 
 var (
-	bot     *tgbotapi.BotAPI
+	bot     *tgbotApi.BotAPI
 	baseURL = "https://drewie-maid-bot.herokuapp.com/"
 )
 
@@ -20,16 +20,14 @@ func initTelegram() {
 	botToken := os.Getenv("BOT_TOKEN")
 	var err error
 
-	bot, err = tgbotapi.NewBotAPI(botToken)
+	bot, err = tgbotApi.NewBotAPI(botToken)
 	if err != nil {
 		log.Println(err)
 		return
 	}
 
-	// this perhaps should be conditional on GetWebhookInfo()
-	// only set webhook if it is not set properly
 	url := baseURL + bot.Token
-	_, err = bot.SetWebhook(tgbotapi.NewWebhook(url))
+	_, err = bot.SetWebhook(tgbotApi.NewWebhook(url))
 	if err != nil {
 		log.Println(err)
 	}
@@ -44,19 +42,25 @@ func webhookHandler(c *gin.Context) {
 		return
 	}
 
-	var update tgbotapi.Update
+	var update tgbotApi.Update
 	err = json.Unmarshal(bytes, &update)
 	if err != nil {
 		log.Println(err)
 		return
 	}
+	log.Printf("From: %+v;%+v;%+v. Text: %+v\n",
+		update.Message.From.ID,
+		update.Message.From.LanguageCode,
+		update.Message.From,
+		update.Message.Text)
+
+	// MesssageManager(update, bot)
 
 	// to monitor changes run: heroku logs --tail
-	log.Printf("From: %+v Text: %+v\n", update.Message.From, update.Message.Text)
+	update.Message.From.LanguageCode
 
-	msg := tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text)
+	msg := tgbotApi.NewMessage(update.Message.Chat.ID, update.Message.Text)
 	msg.ReplyToMessageID = update.Message.MessageID
-
 	bot.Send(msg)
 }
 
