@@ -1,4 +1,4 @@
 language: go
 cache: packages
 go_packages:
-  - drewie-maid-bot/message-manager
+  - ./message-manager
