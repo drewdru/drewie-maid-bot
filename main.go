@@ -57,7 +57,7 @@ func webhookHandler(c *gin.Context) {
 	// MesssageManager(update, bot)
 
 	// to monitor changes run: heroku logs --tail
-	update.Message.From.LanguageCode
+	// update.Message.From.LanguageCode
 
 	msg := tgbotApi.NewMessage(update.Message.Chat.ID, update.Message.Text)
 	msg.ReplyToMessageID = update.Message.MessageID
