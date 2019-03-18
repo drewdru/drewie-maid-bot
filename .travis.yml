@@ -1,4 +1,5 @@
+go_import_path:
+  - /home/travis/gopath/src/github.com/drewdru/drewie-maid-bot/
 language: go
 cache: packages
 go_packages:
-  - github.com/drewdru/drewie-maid-bot/message-manager
