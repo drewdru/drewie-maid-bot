@@ -53,6 +53,11 @@ func webhookHandler(c *gin.Context) {
 
 	// to monitor changes run: heroku logs --tail
 	log.Printf("From: %+v Text: %+v\n", update.Message.From, update.Message.Text)
+
+	msg := tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text)
+	msg.ReplyToMessageID = update.Message.MessageID
+
+	bot.Send(msg)
 }
 
 func main() {
