@@ -1,1 +1,3 @@
 language: go
+import:
+  - package: drewie-maid-bot/message-manager
