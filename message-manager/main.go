@@ -2,6 +2,7 @@ package messagemanager
 
 import (
 	"log"
+	"strings"
 
 	tgbotApi "github.com/Syfaro/telegram-bot-api"
 )
@@ -18,16 +19,22 @@ func (manager *MessageManager) Process() error {
 		manager.Update.Message.From,
 		manager.Update.Message.Text)
 
-	data := ['', manager.Update.Message.Text]
-	if manager.Update.Message.Text[0] == '/' {
-		regSpace := regexp.MustCompile(` `)
+	data := ["", manager.Update.Message.Text]
+	if manager.Update.Message.Text[0] == "/" {
+		regSpace := regexp.MustCompile(" ")
 		data = regSpace.Split(manager.Update.Message.Text, 2))
 	}
 
-	response := ''
+	response := ""
 	switch data[0] {
-	case '':
-		response = "Not a command: " + data[1]
+	case "":
+		if strings.Contains(data[1], "?") {
+			response = "42"
+		} else {
+			response = "Not a command: " + data[1]
+		}
+	case "/help":
+		response = "/help - for help\n"
 	default:
 		response = "Command: " + data[0] + "; data:" + data[1]
 	}
