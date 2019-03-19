@@ -17,8 +17,23 @@ func (manager *MessageManager) Process() error {
 		manager.Update.Message.From.LanguageCode,
 		manager.Update.Message.From,
 		manager.Update.Message.Text)
+
+	data := ['', manager.Update.Message.Text]
+	if manager.Update.Message.Text[0] == '/' {
+		regSpace := regexp.MustCompile(` `)
+		data = regSpace.Split(manager.Update.Message.Text, 2))
+	}
+
+	response := ''
+	switch data[0] {
+	case '':
+		response = "Not a command: " + data[1]
+	default:
+		response = "Command: " + data[0] + "; data:" + data[1]
+	}
+
 	msg := tgbotApi.NewMessage(manager.Update.Message.Chat.ID,
-		manager.Update.Message.Text)
+		response)
 	msg.ReplyToMessageID = manager.Update.Message.MessageID
 	manager.Bot.Send(msg)
 	return nil
