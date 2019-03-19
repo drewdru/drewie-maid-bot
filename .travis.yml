@@ -5,4 +5,4 @@ before_install:
 os:
   - linux
   - osx
-  - windows
+  # - windows isn't supported on Travis
