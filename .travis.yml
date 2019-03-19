@@ -10,5 +10,4 @@ deploy:
   provider: heroku
   api_key:
     secure: Q1OZussGbnvnmAvQBE6xzgHLKae0n6
-  app: 
-    production: drewie-maid-bot
+  app: drewie-maid-bot
