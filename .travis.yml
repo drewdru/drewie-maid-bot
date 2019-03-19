@@ -1,13 +1,12 @@
 language: go
 cache: packages
 before_install:
-  - go get ./...
+- go get ./...
 os:
-  - linux
-  - osx
-  # - windows isn't supported on Travis
+- linux
+- osx
 deploy:
   provider: heroku
   api_key:
-    secure: Q1OZussGbnvnmAvQBE6xzgHLKae0n6
+    secure: VrJhdowbKi/PujLwCS6sLmWwl4+KMQSh47IQeQ2a6msYhXgetquHZ0w5I435CofEo5oljpdBPbzmffK4nGow3xTw4ScUogvCcKJrWdMYeJ1FQaMUY2IBJ4I/4225kUhcVDk4o7I+ZLIXKbn9sMjuLYw8S/neiL8elVqQSMPz4wBK/ZhRLrEFDZnhjiZpCOsmeXMFUATWc3WcJxxfbMHnBTIrEDMQHsWdUylUDoPU0uk7itew/TxYy3Q45BY5lTD+RaAsYNQK1dgzefOB+X5LbD7BqHxat+5DReC5ob1pBOTdq4mYMUB1SpZe/a4YMJqS0XsnnSPH1MK94ncSsCxkbb7HOxAYEebq1Zrqye4rUjnzjyQjjGJPgLxhyCNPszCbwmdylNPxZdarQNeznKFP4XSGmpk4dErntw8e20H4H5YznM8zimbOeTL671rN8Tur9iO97gR1dWrviR8w4QyvXuaM12SZlgAk7RTHRAdge+6OcHdmpB0NbDKJrT4GfuZrI+uZQPxwi8uqO533fktVQ+aW8aondJ4m1wB8g/mMkiJfH1m4/C+qAx5FdoevbZYFbWUnwMWu69TRBG2aAuLAa9yYZinoAyEmvxFigZd/HfMRZwJ7VP3TNy34KB5EWuWlwFzLIVST39paFrYkGgDb9suYj6l+Im/B4YIDo9kDbdc=
   app: drewie-maid-bot
