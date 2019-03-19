@@ -50,14 +50,11 @@ func webhookHandler(c *gin.Context) {
 		log.Println(err)
 		return
 	}
-	log.Printf("From: %+v;%+v;%+v. Text: %+v\n",
-		update.Message.From.ID,
-		update.Message.From.LanguageCode,
-		update.Message.From,
-		update.Message.Text)
 
-	manager := messageManager.MessageManager{Update: &update, Bot: bot}
-	manager.Process()
+	if update.Message != nil { // ignore any non-Message updates
+		manager := messageManager.MessageManager{Update: &update, Bot: bot}
+		manager.Process()
+	}
 }
 
 func main() {

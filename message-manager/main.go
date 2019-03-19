@@ -1,9 +1,11 @@
 package messagemanager
 
 import (
+	"fmt"
 	"log"
-	"regexp"
 	"strings"
+
+	"drewie-maid-bot/localizer"
 
 	tgbotApi "github.com/Syfaro/telegram-bot-api"
 )
@@ -13,36 +15,58 @@ type MessageManager struct {
 	Update *tgbotApi.Update `tgbotApi.Update:"update response"`
 }
 
-func (manager *MessageManager) Process() error {
-	log.Printf("From: %+v;%+v;%+v. Text: %+v\n",
-		manager.Update.Message.From.ID,
-		manager.Update.Message.From.LanguageCode,
-		manager.Update.Message.From,
-		manager.Update.Message.Text)
-
-	data := []string{"", manager.Update.Message.Text}
-	if manager.Update.Message.Text[0] == '/' {
-		regSpace := regexp.MustCompile(" ")
-		data = regSpace.Split(data[1], 2)
+func (manager *MessageManager) Process() {
+	if !update.Message.IsCommand() { // ignore any non-command Messages
+		manager.ProcessCommand()
+		return
 	}
+
+	message := tgbotApi.NewMessage(manager.Update.Message.Chat.ID, "")
+	message.ReplyToMessageID = manager.Update.Message.MessageID
 
 	response := ""
-	switch data[0] {
-	case "":
-		if strings.Contains(data[1], "?") {
-			response = "42"
-		} else {
-			response = "Not a command: " + data[1]
-		}
-	case "/help":
-		response = "/help - for help\n"
-	default:
-		response = "Command: " + data[0] + "; data:" + data[1]
+	if strings.Contains(manager.Update.Message.Text, "?") {
+		message.Text = "42"
+	} else {
+		message.Text = localizer.translate("huh_ask",
+			update.Message.From.LanguageCode)
 	}
 
-	msg := tgbotApi.NewMessage(manager.Update.Message.Chat.ID,
-		response)
-	msg.ReplyToMessageID = manager.Update.Message.MessageID
-	manager.Bot.Send(msg)
-	return nil
+	if _, err := manager.Bot.Send(message); err != nil {
+		log.Panic(err)
+	}
+}
+
+func (manager *MessageManager) ProcessCommand() {
+	message := tgbotApi.NewMessage(manager.Update.Message.Chat.ID, "")
+	message.ReplyToMessageID = manager.Update.Message.MessageID
+
+	switch update.Message.Command() {
+	case "help":
+		message.Text = localizer.translate("help",
+			update.Message.From.LanguageCode)
+	case "hi":
+		message.Text = localizer.translate("hi",
+			update.Message.From.LanguageCode)
+	case "status":
+		message.Text = localizer.translate("bot_status_ok",
+			update.Message.From.LanguageCode)
+	case "whoami":
+		message.Text = fmt.Sprintf("%s: %s\n%s: %v",
+			localizer.translate("name",
+				update.Message.From.LanguageCode),
+			update.Message.From,
+			localizer.translate("id",
+				update.Message.From.LanguageCode),
+			update.Message.From.ID)
+	default:
+		message.Text = fmt.Sprintf("%s: %s",
+			localizer.translate("uknown_command",
+				update.Message.From.LanguageCode),
+			update.Message.Text)
+	}
+
+	if _, err := manager.Bot.Send(message); err != nil {
+		log.Panic(err)
+	}
 }
