@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	messageManager "drewie-maid-bot/message-manager"
+	messageManager "github.com/drewdru/drewie-maid-bot/message-manager"
 
 	tgbotApi "github.com/Syfaro/telegram-bot-api"
 	"github.com/gin-gonic/gin"

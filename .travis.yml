@@ -1,8 +1,14 @@
 language: go
 cache: packages
 before_install:
-  - go get ./drewie-maid-bot/message-manager
+  - go get ./...
 os:
   - linux
   - osx
   # - windows isn't supported on Travis
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: 
+#   app: 
+#     master: drewie-maid-bot

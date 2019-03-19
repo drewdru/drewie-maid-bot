@@ -3,6 +3,5 @@
 build:
   languages:
     - go
-
 run:
   web: drewie-maid-bot
