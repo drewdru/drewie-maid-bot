@@ -1,7 +1,7 @@
 language: go
 cache: packages
 before_install:
-  - go get ./...
+  - go get ./message-manager
 os:
   - linux
   - osx
