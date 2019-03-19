@@ -2,3 +2,7 @@ language: go
 cache: packages
 before_install:
   - go get ./...
+os:
+  - linux
+  - osx
+  - windows
