@@ -16,7 +16,7 @@ type MessageManager struct {
 }
 
 func (manager *MessageManager) Process() {
-	if !update.Message.IsCommand() { // ignore any non-command Messages
+	if !manager.Update.Message.IsCommand() {
 		manager.ProcessCommand()
 		return
 	}
@@ -24,12 +24,11 @@ func (manager *MessageManager) Process() {
 	message := tgbotApi.NewMessage(manager.Update.Message.Chat.ID, "")
 	message.ReplyToMessageID = manager.Update.Message.MessageID
 
-	response := ""
 	if strings.Contains(manager.Update.Message.Text, "?") {
 		message.Text = "42"
 	} else {
-		message.Text = localizer.translate("huh_ask",
-			update.Message.From.LanguageCode)
+		message.Text = localizer.Translate("huh_ask",
+			manager.Update.Message.From.LanguageCode)
 	}
 
 	if _, err := manager.Bot.Send(message); err != nil {
@@ -41,29 +40,29 @@ func (manager *MessageManager) ProcessCommand() {
 	message := tgbotApi.NewMessage(manager.Update.Message.Chat.ID, "")
 	message.ReplyToMessageID = manager.Update.Message.MessageID
 
-	switch update.Message.Command() {
+	switch manager.Update.Message.Command() {
 	case "help":
-		message.Text = localizer.translate("help",
-			update.Message.From.LanguageCode)
+		message.Text = localizer.Translate("help",
+			manager.Update.Message.From.LanguageCode)
 	case "hi":
-		message.Text = localizer.translate("hi",
-			update.Message.From.LanguageCode)
+		message.Text = localizer.Translate("hi",
+			manager.Update.Message.From.LanguageCode)
 	case "status":
-		message.Text = localizer.translate("bot_status_ok",
-			update.Message.From.LanguageCode)
+		message.Text = localizer.Translate("bot_status_ok",
+			manager.Update.Message.From.LanguageCode)
 	case "whoami":
 		message.Text = fmt.Sprintf("%s: %s\n%s: %v",
-			localizer.translate("name",
-				update.Message.From.LanguageCode),
-			update.Message.From,
-			localizer.translate("id",
-				update.Message.From.LanguageCode),
-			update.Message.From.ID)
+			localizer.Translate("name",
+				manager.Update.Message.From.LanguageCode),
+			manager.Update.Message.From,
+			localizer.Translate("id",
+				manager.Update.Message.From.LanguageCode),
+			manager.Update.Message.From.ID)
 	default:
 		message.Text = fmt.Sprintf("%s: %s",
-			localizer.translate("uknown_command",
-				update.Message.From.LanguageCode),
-			update.Message.Text)
+			localizer.Translate("uknown_command",
+				manager.Update.Message.From.LanguageCode),
+			manager.Update.Message.Text)
 	}
 
 	if _, err := manager.Bot.Send(message); err != nil {

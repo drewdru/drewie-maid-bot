@@ -11,21 +11,22 @@ import (
 
 var bundle *i18n.Bundle
 
-func translate(key, locale string) (string, error) {
+func Translate(key, locale string) string {
 	localizer := i18n.NewLocalizer(bundle, locale)
 	msg, err := localizer.Localize(
 		&i18n.LocalizeConfig{
 			MessageID: key,
 		},
 	)
-	return msg, err
+	if err != nil {
+		fmt.Errorf("Error initialising localization, %v", err)
+		panic(err)
+	}
+	return msg
 }
 
 func main() {
-	langFiles := []string{
-		"en-US.yaml",
-		"ru-RU.yaml"
-	}
+	langFiles := []string{"en-US.yaml", "ru-RU.yaml"}
 	var err error
 
 	bundle, err = CreateLocalizerBundle(langFiles)
