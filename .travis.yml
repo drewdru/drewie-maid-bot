@@ -1,4 +1,3 @@
-go_import_path: github.com/drewdru/drewie-maid-bot/
 language: go
 cache: packages
 before_install:
