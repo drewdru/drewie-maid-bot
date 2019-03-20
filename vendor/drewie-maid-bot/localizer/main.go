@@ -33,7 +33,7 @@ func newLocalizer() *localizer {
 	var langFiles []string
 	var err error
 
-	err = filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
+	err = filepath.Walk("./localizations/", func(path string, info os.FileInfo, err error) error {
 		if filepath.Ext(path) == ".yaml" {
 			langFiles = append(langFiles, info.Name())
 		}

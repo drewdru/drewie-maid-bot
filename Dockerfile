@@ -18,4 +18,5 @@ ENV HOME /app
 WORKDIR /app
 RUN useradd -m heroku
 USER heroku
+ADD /app/localizer/localizations /app/bin/localizations
 CMD /app/bin/drewie-maid-bot
