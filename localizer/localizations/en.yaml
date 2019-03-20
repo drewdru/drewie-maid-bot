@@ -1,10 +1,12 @@
-huh_ask: А?
-help:
-  /hi - Greeting
-  /status - Get bot status
-hi: Hi :)
-bot_status_ok: I'm happy
-name: Name
-id: ID
-uknown_command: I don't know that command
-lang: Language
+en:
+  huh:
+    ask: А?
+  help:
+    /hi - Greeting
+    /status - Get bot status
+  hi: Hi :)
+  bot_status_ok: I'm happy
+  name: Name
+  id: ID
+  uknown_command: I don't know that command
+  lang: Language

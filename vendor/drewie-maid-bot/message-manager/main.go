@@ -31,7 +31,7 @@ func (manager *MessageManager) Process() {
 	if strings.Contains(manager.Update.Message.Text, "?") {
 		message.Text = "42"
 	} else {
-		message.Text = i18n.Translate("huh_ask",
+		message.Text = i18n.Translate("huh.ask",
 			manager.Update.Message.From.LanguageCode)
 	}
 

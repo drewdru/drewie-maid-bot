@@ -83,7 +83,7 @@ func (localizerObj *localizer) Translate(key, locale string) string {
 	)
 	if err != nil {
 		log.Println("Error initialising localization, %v", err)
-		return fmt.Sprintf("Error: %v. Message NOT Found:", err)
+		return fmt.Sprintf("Error: %v. Message NOT Found", err)
 	}
 	return message
 }
