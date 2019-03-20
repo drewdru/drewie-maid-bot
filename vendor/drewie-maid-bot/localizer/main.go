@@ -3,6 +3,7 @@ package localizer
 import (
 	"fmt"
 	"log"
+	"os"
 	"sync"
 
 	"io/ioutil"
@@ -30,11 +31,12 @@ func GetInstance() *localizer {
 
 // newLocalizer create localizer instance
 func newLocalizer() *localizer {
+	i18n_dir := os.Getenv("I18N_DIR")
 	var langFiles []string
 	var err error
 	log.Println("langFiles: %v", langFiles)
 
-	langFiles, err = filepath.Glob("../localizer/localizations/*.yaml")
+	langFiles, err = filepath.Glob(i18n_dir + "*.yaml")
 	if err != nil {
 		log.Fatal(err)
 	}

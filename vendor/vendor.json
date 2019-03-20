@@ -3,16 +3,16 @@
 	"ignore": "test",
 	"package": [
 		{
-			"checksumSHA1": "35Bmt/Pn222Uh6+fP2FWiSy0Vnk=",
+			"checksumSHA1": "n9tI6oQMewq74cOFRYH3YmPGcbE=",
 			"path": "drewie-maid-bot/localizer",
-			"revision": "64116f45a17889ccc72f49bc3ce178890d3857d4",
-			"revisionTime": "2019-03-20T13:58:28Z"
+			"revision": "21829faaf4699bc8d56c08faf8faae97045c0ab1",
+			"revisionTime": "2019-03-20T14:07:42Z"
 		},
 		{
 			"checksumSHA1": "bVFKkSjTUP34/XvajL+cBiIA7AM=",
 			"path": "drewie-maid-bot/message-manager",
-			"revision": "64116f45a17889ccc72f49bc3ce178890d3857d4",
-			"revisionTime": "2019-03-20T13:58:28Z"
+			"revision": "21829faaf4699bc8d56c08faf8faae97045c0ab1",
+			"revisionTime": "2019-03-20T14:07:42Z"
 		},
 		{
 			"checksumSHA1": "HAmsQyaYji6v4JfJz9HNSOpIds0=",
