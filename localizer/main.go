@@ -33,9 +33,12 @@ func GetInstance() *localizer {
 func newLocalizer() *localizer {
 	var langFiles []string
 	var err error
+	log.Println("langFiles: %v", langFiles)
 
 	err = filepath.Walk("./localizations/", func(path string, info os.FileInfo, err error) error {
+		log.Println("langFiles: %s", path)
 		if filepath.Ext(path) == ".yaml" {
+			log.Println("info: %s", info.Name())
 			langFiles = append(langFiles, info.Name())
 		}
 		return nil
@@ -43,6 +46,7 @@ func newLocalizer() *localizer {
 	if err != nil {
 		panic(err)
 	}
+	log.Println("langFiles: %v", langFiles)
 
 	instance := new(localizer)
 	instance.bundle, err = createLocalizerBundle(langFiles)
