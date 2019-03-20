@@ -56,13 +56,18 @@ func (manager *MessageManager) ProcessCommand() {
 		message.Text = i18n.Translate("bot_status_ok",
 			manager.Update.Message.From.LanguageCode)
 	case "whoami":
-		message.Text = fmt.Sprintf("%s: %s\n%s: %v",
+		message.Text = fmt.Sprintf("%s: %s\n%s: %v\n%s: %s",
 			i18n.Translate("name",
 				manager.Update.Message.From.LanguageCode),
 			manager.Update.Message.From,
 			i18n.Translate("id",
 				manager.Update.Message.From.LanguageCode),
-			manager.Update.Message.From.ID)
+			manager.Update.Message.From.ID,
+			i18n.Translate("lang",
+				manager.Update.Message.From.LanguageCode),
+			manager.Update.Message.From.LanguageCode,
+		)
+
 	default:
 		message.Text = fmt.Sprintf("%s: %s",
 			i18n.Translate("uknown_command",

@@ -6,4 +6,5 @@ hi: Hi :)
 bot_status_ok: I'm happy
 name: Name
 id: ID
-uknown_command: "I don't know that command"
+uknown_command: I don't know that command
+lang: Language

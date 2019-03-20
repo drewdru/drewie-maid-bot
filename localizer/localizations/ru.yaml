@@ -6,4 +6,5 @@ hi: Привет :)
 bot_status_ok: Я счастлив
 name: Имя
 id: ИД
-uknown_command: "Я не знаю такой команды"
+uknown_command: Я не знаю такой команды
+lang: Язык
