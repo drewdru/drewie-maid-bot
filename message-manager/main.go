@@ -20,7 +20,7 @@ type MessageManager struct {
 
 // Process reads messages and generate response
 func (manager *MessageManager) Process() {
-	if !manager.Update.Message.IsCommand() {
+	if manager.Update.Message.IsCommand() {
 		manager.ProcessCommand()
 		return
 	}
