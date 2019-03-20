@@ -3,7 +3,6 @@ package localizer
 import (
 	"fmt"
 	"log"
-	"os"
 	"sync"
 
 	"io/ioutil"
@@ -35,16 +34,9 @@ func newLocalizer() *localizer {
 	var err error
 	log.Println("langFiles: %v", langFiles)
 
-	err = filepath.Walk("./localizations/", func(path string, info os.FileInfo, err error) error {
-		log.Println("langFiles: %s", path)
-		if filepath.Ext(path) == ".yaml" {
-			log.Println("info: %s", info.Name())
-			langFiles = append(langFiles, path)
-		}
-		return nil
-	})
+	langFiles, err = filepath.Glob("./localizations/*.yaml")
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	log.Println("langFiles: %v", langFiles)
 
