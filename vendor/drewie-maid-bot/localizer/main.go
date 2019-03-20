@@ -34,7 +34,7 @@ func newLocalizer() *localizer {
 	var err error
 	log.Println("langFiles: %v", langFiles)
 
-	langFiles, err = filepath.Glob("./localizations/*.yaml")
+	langFiles, err = filepath.Glob("../localizer/localizations/*.yaml")
 	if err != nil {
 		log.Fatal(err)
 	}
