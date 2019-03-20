@@ -1,7 +1,7 @@
 package localizer
 
 import (
-	"fmt"
+	"log"
 	"os"
 	"sync"
 
@@ -46,7 +46,7 @@ func newLocalizer() *localizer {
 	instance := new(localizer)
 	instance.bundle, err = createLocalizerBundle(langFiles)
 	if err != nil {
-		fmt.Errorf("Error initialising localization, %v", err)
+		log.Println("Error initialising localization, %v", err)
 		panic(err)
 	}
 	return instance
@@ -63,7 +63,7 @@ func createLocalizerBundle(langFiles []string) (*i18n.Bundle, error) {
 	for _, file := range langFiles {
 		translations, err = ioutil.ReadFile(file)
 		if err != nil {
-			fmt.Errorf("Unable to read translation file %s", file)
+			log.Println("Unable to read translation file %s", file)
 			return nil, err
 		}
 		bundle.MustParseMessageFileBytes(translations, file)
@@ -81,7 +81,7 @@ func (localizerObj *localizer) Translate(key, locale string) string {
 		},
 	)
 	if err != nil {
-		fmt.Errorf("Error initialising localization, %v", err)
+		log.Println("Error initialising localization, %v", err)
 		return "Message NOT Found"
 	}
 	return message
