@@ -60,6 +60,7 @@ func createLocalizerBundle(langFiles []string) (*i18n.Bundle, error) {
 
 	var translations []byte
 	var err error
+	log.Println("A000000000: %v", bundle)
 
 	for _, file := range langFiles {
 		translations, err = ioutil.ReadFile(file)
@@ -67,11 +68,11 @@ func createLocalizerBundle(langFiles []string) (*i18n.Bundle, error) {
 			log.Println("Unable to read translation file %s", file)
 			return nil, err
 		}
-		log.Println("%v", translations)
-		log.Println("%v", file)
+		log.Println("A111111111: %v", translations)
+		log.Println("A222222222: %v", file)
 		bundle.MustParseMessageFileBytes(translations, file)
 	}
-	log.Println("%v", bundle)
+	log.Println("A333333333: %v", bundle)
 
 	return bundle, nil
 }
