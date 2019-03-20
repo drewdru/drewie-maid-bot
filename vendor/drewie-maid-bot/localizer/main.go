@@ -1,6 +1,7 @@
 package localizer
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"sync"
@@ -82,7 +83,7 @@ func (localizerObj *localizer) Translate(key, locale string) string {
 	)
 	if err != nil {
 		log.Println("Error initialising localization, %v", err)
-		return "Message NOT Found"
+		return fmt.Sprintf("Error: %v. Message NOT Found:", err)
 	}
 	return message
 }
