@@ -39,7 +39,7 @@ func newLocalizer() *localizer {
 		log.Println("langFiles: %s", path)
 		if filepath.Ext(path) == ".yaml" {
 			log.Println("info: %s", info.Name())
-			langFiles = append(langFiles, info.Name())
+			langFiles = append(langFiles, path)
 		}
 		return nil
 	})
