@@ -1,12 +1,11 @@
-ru:
-  huh:
-    ask: А?
-  help: 
-    /hi - приветствие
-    /status - статус бота
-  hi: Привет :)
-  bot_status_ok: Я счастлив
-  name: Имя
-  id: ИД
-  uknown_command: Я не знаю такой команды
-  lang: Язык
+huh:
+  ask: А?
+help: 
+  /hi - приветствие
+  /status - статус бота
+hi: Привет :)
+bot_status_ok: Я счастлив
+name: Имя
+id: ИД
+uknown_command: Я не знаю такой команды
+lang: Язык

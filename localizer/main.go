@@ -67,8 +67,11 @@ func createLocalizerBundle(langFiles []string) (*i18n.Bundle, error) {
 			log.Println("Unable to read translation file %s", file)
 			return nil, err
 		}
+		log.Println("%v", translations)
+		log.Println("%v", file)
 		bundle.MustParseMessageFileBytes(translations, file)
 	}
+	log.Println("%v", bundle)
 
 	return bundle, nil
 }
