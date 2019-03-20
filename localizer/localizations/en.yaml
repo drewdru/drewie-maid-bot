@@ -1,7 +1,6 @@
-huh:
-  ask: А?
+huh_ask: А?
 help:
-  /hi - Greeting
+  /hi - Greeting\n
   /status - Get bot status
 hi: Hi :)
 bot_status_ok: I'm happy

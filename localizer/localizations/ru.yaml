@@ -1,7 +1,6 @@
-huh:
-  ask: А?
+huh_ask: А?
 help: 
-  /hi - приветствие
+  /hi - приветствие\n
   /status - статус бота
 hi: Привет :)
 bot_status_ok: Я счастлив
